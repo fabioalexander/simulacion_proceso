@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import com.logica.AdministradorProcesos;
-import com.logica.EstadoP;
+import com.logica.EstadoProceso;
 import com.logica.Proceso;
 
 public class VentanaPrincipal extends JFrame {
@@ -127,7 +127,7 @@ public class VentanaPrincipal extends JFrame {
 							administradorP.getListaProcesos().recibirProceso(
 									new Proceso("Proceso "
 											+ jtfNombreProceso.getText(),
-											EstadoP.NUEVO,
+											EstadoProceso.NUEVO,
 											Integer.parseInt(jtfDuracionProceso
 													.getText()), jcbBloqueado
 													.isSelected(), Integer
@@ -157,7 +157,7 @@ public class VentanaPrincipal extends JFrame {
 						administradorP.getListaProcesos().recibirProceso(
 								new Proceso("Proceso "
 										+ jtfNombreProceso.getText(),
-										EstadoP.NUEVO, Integer
+										EstadoProceso.NUEVO, Integer
 												.parseInt(jtfDuracionProceso
 														.getText()),
 										jcbBloqueado.isSelected()));
