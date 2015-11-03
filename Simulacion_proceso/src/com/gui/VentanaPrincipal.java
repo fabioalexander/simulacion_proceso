@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.security.auth.callback.TextOutputCallback;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -71,8 +72,12 @@ public class VentanaPrincipal extends JFrame implements Runnable{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				listaProcesos.add(new Proceso(nombreTexto.getText(),Integer.parseInt(tiempoTexto.getText())));
-				proceso();
+				try {
+					listaProcesos.add(new Proceso(nombreTexto.getText(),Integer.parseInt(tiempoTexto.getText())));
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Llene los campos con la información solicitada");
+				}
+				
 			}
 		});
 		
@@ -141,12 +146,12 @@ public class VentanaPrincipal extends JFrame implements Runnable{
 		notify();
 	}
 	 
-	public void proceso(){
-		
-	}
 	public void run(){
 		String textoCronometro="";
 		String textoProceso="";
+//		for (int i = 0; i < listaProcesos.size(); i++) {
+//			proceso=listaProcesos.get(i);
+//		}
 		
 		while (ejecucion) {
 			for (int i = 0; i < listaProcesos.size(); i++) {
@@ -161,9 +166,9 @@ public class VentanaPrincipal extends JFrame implements Runnable{
 							wait();
 						}
 					}
-					Thread.sleep(100);
+					Thread.sleep(1000);
 					proceso.setTiempoEjecucion(proceso.getTiempoEjecucion()-1);
-					if(proceso.getTiempoEjecucion()<0){
+					if(proceso.getTiempoEjecucion()<=0){
 						paused=true;
 						JOptionPane.showMessageDialog(null,"Proceso '"+proceso.getNombre()+"' finalizado");
 					}
