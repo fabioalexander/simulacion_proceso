@@ -3,17 +3,15 @@ package com.logica;
 public class Proceso {
 	private String nombre;
 	private int tiempoEjecucion;
-	private boolean bloqueo;
 	
-	public Proceso(String nombre, int tiempoEjecucion, boolean bloqueo) {
+	public Proceso(String nombre, int tiempoEjecucion) {
 		this.nombre=nombre;
 		this.tiempoEjecucion=tiempoEjecucion;
-		this.bloqueo=bloqueo;
-		
 	}
 	
 	public Proceso(){
-		
+		this.nombre=null;
+		this.tiempoEjecucion=0;
 	}
 
 	public String getNombre() {
@@ -31,13 +29,4 @@ public class Proceso {
 	public void setTiempoEjecucion(int tiempoEjecucion) {
 		this.tiempoEjecucion = tiempoEjecucion;
 	}
-
-	public boolean isBloqueo() {
-		return bloqueo;
-	}
-
-	public void setBloqueo(boolean bloqueo) {
-		this.bloqueo = bloqueo;
-	}	
-	
 }
