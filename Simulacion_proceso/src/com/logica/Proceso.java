@@ -1,74 +1,81 @@
 package com.logica;
 
-import java.util.ArrayList;
+import com.logica.EstadoP;
 
-/**
- * Clase que guarda la información del proceso que se ejecuta
- * @author Alfonso Calero, Fabio Rivera, Yeisson Rojas
- *
- */
 public class Proceso {
-	
-	/**
-	 * Atributo de tipo String del nombre del proceso
-	 */
+
 	private String nombre;
-	
-	/**
-	 * Atributo de tipo Integer del tiempo que se va a ejecutar el proceso
-	 */
+	private EstadoP estado;
 	private int tiempoEjecucion;
+	private boolean bloqueo;
 	
-	/**
-	 * Constructor de la clase Proceso. Recibe por parámetro el nombre y el tiempo de ejecución
-	 * @param nombre
-	 * @param tiempoEjecucion
-	 */
-	public Proceso(String nombre, int tiempoEjecucion) {
+	private int duracionBloq;
+	private int lanzamientoBloq;
+	
+	public Proceso(String nombre, EstadoP estado, int tiempoEjecucion, boolean bloqueo) {
 		this.nombre=nombre;
+		this.estado=estado;
 		this.tiempoEjecucion=tiempoEjecucion;
+		this.bloqueo=bloqueo;
 	}
 	
-	/**
-	 * Constructor por defecto de la clase Proceso
-	 */
-	public Proceso(){
-		this.nombre=null;
-		this.tiempoEjecucion=0;
+	public Proceso(String nombre, EstadoP estado, int tiempoEjecucion, boolean bloqueo, int duracionBloq, int lanzamientoBloq){
+		this.nombre=nombre;
+		this.estado=estado;
+		this.tiempoEjecucion=tiempoEjecucion;
+		this.bloqueo=bloqueo;
+		this.duracionBloq = duracionBloq;
+		this.lanzamientoBloq = lanzamientoBloq;
 	}
 
-	public String toString(){
-		return "Nombre: "+nombre+" Tiempo de Ejecución: "+tiempoEjecucion;
-	}
-	/**
-	 * Método get del nombre del proceso
-	 * @return nombre
-	 */
 	public String getNombre() {
 		return nombre;
 	}
 
-	/**
-	 * Método set del nombre del proceso
-	 * @param nombre
-	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	/**
-	 * Método get del tiempo de ejecución del proceso
-	 * @return nombre
-	 */
+	public EstadoP getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoP estado) {
+		this.estado = estado;
+	}
+
 	public int getTiempoEjecucion() {
 		return tiempoEjecucion;
 	}
 
-	/**
-	 * Método set del tiempo de ejecución del proceso
-	 * @param tiempoEjecucion
-	 */
 	public void setTiempoEjecucion(int tiempoEjecucion) {
 		this.tiempoEjecucion = tiempoEjecucion;
 	}
+
+	public boolean isBloqueo() {
+		return bloqueo;
+	}
+
+	public void setBloqueo(boolean bloqueo) {
+		this.bloqueo = bloqueo;
+	}
+
+
+	public int getDuracionBloq() {
+		return duracionBloq;
+	}
+
+	public void setDuracionBloq(int duracionBloq) {
+		this.duracionBloq = duracionBloq;
+	}
+
+	public int getLanzamientoBloq() {
+		return lanzamientoBloq;
+	}
+
+	public void setLanzamientoBloq(int lanzamientoBloq) {
+		this.lanzamientoBloq = lanzamientoBloq;
+	}
+	
+	
 }
