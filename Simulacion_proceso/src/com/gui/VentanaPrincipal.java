@@ -24,34 +24,119 @@ import com.logica.AdministradorProcesos;
 import com.logica.EstadoProceso;
 import com.logica.Proceso;
 
+/**
+ * Clase que contiene todos los componentes gráficos de la aplicación
+ * 
+ * @author Alfonso Calero, Fabio Rivera, Yeisson Rojas
+ *
+ */
 public class VentanaPrincipal extends JFrame {
 	
+	/**
+	 * Atributo del panel de añadir proceso
+	 */
 	private JPanel añadirProcesoPanel;
+	
+	/**
+	 * Atributo del panel de listar los procesos que se van a ejecutar
+	 */
 	private JPanel listaProcesosPanel;
+	
+	/**
+	 * Atributo del panel del log de transacciones de los procesos
+	 */
 	private JPanel logPanel;
 
+	/**
+	 * Atributo de tipo label del título del panel de añadir
+	 */
 	private JLabel lblAñadir;
+	
+	/**
+	 * Atributo de tipo label del nombre del proceso
+	 */
 	private JLabel lblNombreProceso;
+	
+	/**
+	 * Atributo de tipo label de la duración de ejecución del proceso
+	 */
 	private JLabel lblDuracionProceso;
+	
+	/**
+	 * Atributo de tipo TextField del nombre del proceso
+	 */
 	private JTextField jtfNombreProceso;
+	
+	/**
+	 * Atributo de tipo TextField de la duración de ejecución del proceso
+	 */
 	private JTextField jtfDuracionProceso;
+	
+	/**
+	 * Atributo de tipo CheckBox para saber si tiene o no bloqueo el proceso
+	 */
 	private JCheckBox jcbBloqueado;
+	
+	/**
+	 * Atributo de tipo label de la duración del bloqueo del proceso
+	 */
 	private JLabel lblDuracionBloq;
+	
+	/**
+	 * Atributo de tipo label del tiempo que dura el proceso en ejecución antes de ser bloqueado
+	 */
 	private JLabel lblLanzamientoBloq;
+	
+	/**
+	 * Atributo de tipo TextField de la duración del bloqueo del proceso
+	 */
 	private JTextField jtfDuracionBloq;
+	
+	/**
+	 * Atributo de tipo TextField de la duración de ejecución del proceso antes de ser bloqueado
+	 */
 	private JTextField jtfLanzamientoBloq;
+	
+	/**
+	 * Atributo de tipo Button para agregar procesos
+	 */
 	private JButton btnAgregarProceso;
 
+	/**
+	 * Atributo de tipo Button para ejecutar los procesos de la lista
+	 */
 	private JButton btnEjecutar;
+	
+	/**
+	 * Atributo de tipo JList para los procesos en ejecución
+	 */
 	private JList<String> listProcesos;
+	
+	/**
+	 * Atributo de tipo ScrollPane para los procesos en ejecución
+	 */
 	private JScrollPane scrollProcesos;
 
+	/**
+	 * Atributo de tipo ScrollPane para el log de transacciones
+	 */
 	private JScrollPane scrollLog;
+	
+	/**
+	 * Atributo de tipo List para los log de transacciones
+	 */
 	private JList<String> listLog;
 
+	/**
+	 * Atributo de tipo AdministradorProcesos
+	 */
 	private AdministradorProcesos administradorP;
 
-	public VentanaPrincipal() {
+	/**
+	 * Constructor de la clase donde se inicializan todos los atributos anteriores, se define cómo será la ventana
+	 * y se añaden componentes a la misma
+	 */
+	public VentanaPrincipal(){
 		this.setTitle("Procesos");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(null);
@@ -235,6 +320,9 @@ public class VentanaPrincipal extends JFrame {
 		this.add(logPanel);
 	}
 
+	/**
+	 * Método que sirve para actualizar la lista de Procesos en ejecución
+	 */
 	public void actualizarLista() {
 		DefaultListModel<String> modelo = new DefaultListModel<>();
 		for (int i = 0; i < administradorP.getListaProcesos().getColaProcesos()
@@ -247,6 +335,9 @@ public class VentanaPrincipal extends JFrame {
 		repaint();
 	}
 
+	/**
+	 * Método que sirve para actualizar la lista del log de transacciones
+	 */
 	public void actualizarListas() {
 		DefaultListModel<String> modelo = new DefaultListModel<>();
 		for (int i = 0; i < administradorP.getLog().size(); i++) {
@@ -255,6 +346,11 @@ public class VentanaPrincipal extends JFrame {
 		listLog.setModel(modelo);
 	}
 
+	/**
+	 * Método que sirve para la validar que el tiempo de lanzamiento de bloqueo no exceda la duración del proceso
+	 * en ejecución 
+	 * @return
+	 */
 	public boolean validacionLanzamientoBloq() {
 		int a = Integer.parseInt(jtfLanzamientoBloq.getText());
 		int b = Integer.parseInt(jtfDuracionProceso.getText());
@@ -265,6 +361,11 @@ public class VentanaPrincipal extends JFrame {
 			return false;
 	}
 
+	/**
+	 * Método para la validación de los campos numéricos
+	 * @param item
+	 * @return
+	 */
 	public boolean validacionNumeros(String item) {
 		String Cadena = String.valueOf(item);
 
@@ -276,17 +377,29 @@ public class VentanaPrincipal extends JFrame {
 			return false;
 		}
 	}
+	
+	/**
+	 * Método que sirver para limpiar las listas
+	 */
 	public void limpiarListas(){
 		DefaultListModel model = new DefaultListModel();
 		listLog.setModel(model);
 		repaint();
 	}
+	
+	/**
+	 * Método get de la instancia de la clase de Administrador de Procesos
+	 * @return
+	 */
 	public AdministradorProcesos getAdministradorP() {
 		return administradorP;
 	}
 
+	/**
+	 * Método set de la instanciia de la clase de Administrador de Procesos
+	 * @param administradorP
+	 */
 	public void setAdministradorP(AdministradorProcesos administradorP) {
 		this.administradorP = administradorP;
 	}
-
 }	
